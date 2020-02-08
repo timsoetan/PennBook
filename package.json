@@ -1,0 +1,24 @@
+{
+  "name": "Final Project",
+  "description": "..",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "^3.1.0",
+    "aws-sdk": "*",
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "dynamoose": "^1.11.1",
+    "ejs": "^3.0.1",
+    "express": "^3.21.2",
+    "express-session": "^1.17.0",
+    "lru-cache": "*",
+    "shortid": "^2.2.15",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "socketio": "^1.0.0",
+    "xml2js": "^0.4.22"
+  }
+}

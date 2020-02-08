@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/home.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2026b88aeb.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      // User info
+      const user = <%- user %>;
+      const uuid = user.uuid;
+      const fullname = user.fullname;
+      const firstname = user.firstname;
+      const lastname = user.lastname;
+      const profileimageurl = user.profileimageurl;
+
+      // Statuses
+      var feed = <%- feed %>;
+
+      $(document).ready(function() {
+        populateUserInfo();
+
+        // Live Search
+        $('#search-box').keyup(function() {
+          var params = $('#search-box').val();
+
+          if (params.replace(/\s/g, "") != "") {
+            $.post('/search', {
+                search: params
+              },
+              function(results) {
+                if (typeof(results) == 'string') {
+                  console.log(results);
+                } else {
+                  $('#autocompleteTest').empty();
+                  display(results);
+                }
+              }
+            );
+          } else {
+            $('#autocompleteTest').empty();
+          }
+        });
+      });
+
+      function display(results) {
+        var main = document.getElementById('autocompleteTest');
+
+        for (var i = 0; i < results.length; i++) {
+          var a = document.createElement("a");
+          a.className = "pennbook-post-user-link";
+          a.href = "/" + results[i].firstname.replace(/\s/g, "") + "." + results[i].lastname.replace(/\s/g, "") + "/" + results[i].uuid;
+          var li = document.createElement("li");
+          li.style.width = "100%";
+          li.style.height = "40px";
+          li.style.background = "#E0ECF9";
+          li.style.color = "#0666D0";
+          li.style.padding = "10px";
+          li.innerHTML = results[i].fullname;
+
+          if (i == results.length - 1) {
+            li.style.borderBottomLeftRadius = "10px";
+            li.style.borderBottomRightRadius = "10px";
+          }
+
+          var hr = document.createElement("hr");
+          hr.style.width = "92%";
+
+          a.append(li);
+          if (i != results.length - 1) {
+            a.append(hr);
+          }
+          main.append(a);
+        }
+      }
+
+
+      function populateUserInfo() {
+        updateName();
+
+        updateProfileImg();
+
+        updateProfileLinks();
+
+        setupStatusUpdate();
+
+        populateNewsFeed();
+      };
+
+      // Updates the appropriate name fields based on the current logged in user
+      function updateName() {
+        var name = document.getElementsByClassName("pennbook-user-name");
+
+        for (var i = 0; i < name.length; ++i) {
+          name[i].innerHTML = user.fullname;
+        }
+
+        var statusHint = document.getElementById("message");
+        statusHint.placeholder = "What's on your mind, " + user.firstname + "?"
+      };
+
+      // Updates the appropriate user profile image fields based on the current logged in user
+      function updateProfileImg() {
+        var currUserProfileImg = document.getElementsByClassName("pennbook-curruser-profileimg")
+
+
+        for (var i = 0; i < currUserProfileImg.length; ++i) {
+          currUserProfileImg[i].src = profileimageurl;
+        }
+
+      };
+
+      // Updates links back to current logged in user's profile page
+      function updateProfileLinks() {
+        var currUserProfileLinks = document.getElementsByClassName("pennbook-curruser-profile")
+
+        for (var i = 0; i < currUserProfileLinks.length; ++i) {
+          currUserProfileLinks[0].href = "/" + user.firstname.replace(/\s/g, "") + "." + user.lastname.replace(/\s/g, "") + "/" + user.uuid;
+        }
+
+        var navBarLink = document.getElementById("nav-bar-profile-link");
+
+        navBarLink.href = "/" + user.firstname.replace(/\s/g, "") + "." + user.lastname.replace(/\s/g, "") + "/" + user.uuid;
+      };
+
+      // Sets up status update container for post on homepage
+      function setupStatusUpdate() {
+        var statusUpdateForm = document.getElementsByName("status-update-form");
+
+        statusUpdateForm[0].id = uuid;
+      };
+
+      // Populates the homepage newsfeed
+      function populateNewsFeed() {
+        for (var i = 0; i < feed.length; i++) {
+          if (feed[i].type == ("Status Update")) {
+            $.post('/fetchstatus', {
+                id: feed[i].typeid
+              },
+              function(status) {
+                if (typeof(status) == 'string') {
+                  console.log(response);
+                } else {
+                  $.post('/fetchuser', {
+                      id: status.creatorid
+                    },
+                    function(statusCreator) {
+                      if (typeof(statusCreator) == 'string') {
+                        console.log(user);
+                      } else {
+                        createStatus(status, statusCreator, 1);
+                      }
+                    }
+                  );
+                }
+              });
+          }
+        }
+      }
+
+      function createStatus(status, statusCreator, type) {
+        var statusid = status.statusid;
+        var creationdate = status.creationdate;
+        var content = status.content;
+        var creatorid = status.creatorid;
+        var recieverid = status.recieverid;
+
+        var main = document.getElementById('update-status-box');
+        var tmpl = document.getElementById('template');
+
+        var status = tmpl.content.cloneNode(true);
+
+
+        status.querySelector('.pennbook-post-name').innerText = statusCreator.fullname;
+        status.querySelector('.pennbook-post-user-link').href = "/" + statusCreator.firstname.replace(/\s/g, "") + "." + statusCreator.lastname.replace(/\s/g, "") + "/" + statusCreator.uuid;
+        status.querySelector('.pennbook-post-user-image-link').href = "/" + statusCreator.firstname.replace(/\s/g, "") + "." + statusCreator.lastname.replace(/\s/g, "") + "/" + statusCreator.uuid;
+        status.querySelector('.pennbook-post-profile-img').src = statusCreator.profileimageurl;
+        status.querySelector('.pennbook-post-time').innerText = getRelativeDate(new Date(), new Date(creationdate));
+        status.querySelector('.pennbook-post-content').innerText = content;
+
+        if (type == 1) {
+          main.appendChild(status);
+        } else {
+          $(status).insertAfter("#main");
+        }
+      }
+
+
+      // Helper function to get relative time date stamp
+      function getRelativeDate(current, previous) {
+
+        var msPerMinute = 60 * 1000;
+        var msPerHour = msPerMinute * 60;
+        var msPerDay = msPerHour * 24;
+        var msPerMonth = msPerDay * 30;
+        var msPerYear = msPerDay * 365;
+
+        var elapsed = current - previous;
+
+        if (elapsed < msPerMinute) {
+          return Math.round(elapsed / 1000) + ' Seconds Ago';
+        } else if (elapsed < msPerHour) {
+          return Math.round(elapsed / msPerMinute) + ' Minutes Ago';
+        } else if (elapsed < msPerDay) {
+          return Math.round(elapsed / msPerHour) + ' Hours Ago';
+        } else if (elapsed < msPerMonth) {
+          return 'approximately ' + Math.round(elapsed / msPerDay) + ' Days Ago';
+        } else if (elapsed < msPerYear) {
+          return 'approximately ' + Math.round(elapsed / msPerMonth) + ' Months Ago';
+        } else {
+          return 'approximately ' + Math.round(elapsed / msPerYear) + ' Years Ago';
+        }
+      }
+
+    </script>
+    <script type="text/javascript" src="/home.js"></script>
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-primary">
+
+      <a class="navbar-brand" href="/home">
+        <i class="fas fa-parking fa-lg"></i>
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <form class="form-inline" autocomplete="off">
+            <input autocomplete="false" name="hidden" type="text" style="display:none;">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Pennbook" aria-label="Search" style="border: 0px;" id="search-box">
+            <div id="autocompleteTest">
+            </div>
+            <button class="btn btn-primary active" type="submit" style="line-height: .75em;" aria-pressed="true"><i class="fa fa-search"></i></button>
+          </form>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li><a class="nav-link active" href="" id="nav-bar-profile-link"><img class="pennbook-curruser-profileimg" src="" />
+              <span class="pennbook-user-name"></span></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link active" href="/home">Home</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link" href="#"><i class="fab fa-connectdevelop fa-lg" style="margin-right: 5px;"></i>Network Visualizer</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link" href="#"><i class="fas fa-user-friends fa-lg"></i></a></li>
+          <li><a class="nav-link" href="#"><i class="fab fa-facebook-messenger fa-lg"></i></a></li>
+          <li><a class="nav-link" href="#"><i class="fa fa-bell fa-lg"></i></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-lock fa-lg"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Log Out here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="card gedf-card">
+            <div class="card-body">
+              <div class="h5" style="margin-bottom: 15px;">
+                <a class="pennbook-curruser-profile" href="">
+                  <img class="pennbook-curruser-profileimg" src="">
+                  <span class="pennbook-user-name"></span></a>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <a class="news-feed" href="/home">
+                    <i class="fas fa-newspaper" id="newsfeedSidebar"></i>
+                    <span>News Feed</span></a>
+                </li>
+                <li class="list-group-item">
+                  <a class="chat" href="">
+                    <i class="fab fa-facebook-messenger" id="chatsSidebar"></i>
+                    <span>Chats</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card gedf-card">
+            <div class="card-body">
+              <div class="h5" style="margin-bottom: 15px;">You might know...</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-fill bd-highlight"><img class="pennbook-user-profileimg" src="https://www.seas.upenn.edu/directory/images/photos/a-full-haeberlen.jpg" />
+                      <span class="card-text">Andreas Haeberlen</span></div>
+                    <div class="p-2 flex-fill bd-highlight"><i class="fas fa-user-plus" id="adduser"></i></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-5" id="update-status-box">
+          <div class="card gedf-card" id="main">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="statustab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="status-tab" data-toggle="tab" href="#updatestatus" role="tab" aria-controls="status" aria-selected="true"><i class="fas fa-pen-square fa-lg" id="update-status-icon"></i><span>Update Status</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="photo-tab" data-toggle="tab" role="tab" aria-controls="photo" aria-selected="false" href="#addaphoto"><i class="fas fa-photo-video fa-lg" id="add-photo-icon"></i><span>Add A Photo</span></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="updatestatus" role="tabpanel" aria-labelledby="status-tab">
+                  <div class="form-group" name="status-update-form" id="">
+                    <label class="sr-only" for="message">status</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="addaphoto" role="tabpanel" aria-labelledby="photos-tab">
+                  <div class="form-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Upload Photo</label>
+                    </div>
+                  </div>
+                  <div class="py-4"></div>
+                </div>
+              </div>
+              <div class="btn-toolbar justify-content-between">
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary" onclick="updateStatus()" id="post">Post</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <template id="template">
+            <div class="card gedf-card">
+              <div class="modified-card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2">
+                      <a class="pennbook-post-user-image-link" href="">
+                        <img class="pennbook-post-profile-img" width="45" src="" alt="">
+                      </a>
+                    </div>
+                    <div class="ml-2">
+                      <a class="pennbook-post-user-link" href="">
+                        <div class="pennbook-post-name"></div>
+                      </a>
+                      <i class="far fa-clock fa-sm"></i>
+                      <small class="pennbook-post-time"></small>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="pennbook-post-content"></span>
+              </div>
+              <div>
+                <hr width="90%" align="center">
+              </div>
+              <div class="card-footer">
+                <a href="#" class="pennbook-post-like"><i class="far fa-thumbs-up"></i>Like</a>
+                <a href="#" class="pennbook-post-comment"><i class="far fa-comment-alt"></i>Comment</a>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-4">
+          <div class="card gedf-card" id="onlinefriends">
+            <div class="card-body">
+              <h5 class="card-title">Online Friends</h5>
+              <ul class="navbar-nav ml-auto">
+                <li><a class="nav-link disabled" href="#"><img class="pennbook-user-profileimg" src="https://www.biography.com/.image/t_share/MTY2NTIxNzUwNjAxODY4NTEx/benjamin-franklin_editedjpg.jpg" />
+                    <span class="card-text">Benjamin Franklin</span><i class="fas fa-circle fa-xs" id="status"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="successsnackbar"></div>
+    <div id="snackbar"></div>
+  </body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/welcome.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="/authentication.js"></script>
+    <script src="https://kit.fontawesome.com/2026b88aeb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="pagebg"></div>
+    
+    
+    <nav class="navbar navbar-expand-lg navbar-fixed-top navbar-light bg-light">
+
+        <a class="navbar-brand" href="/home">
+    <div style="color: #606770"><i class="fas fa-parking fa-2x" id="logo"></i><span style="font-size: 35px;"><b>Pennbook</b></span></div>
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+            </ul>
+            <ul class="navbar-nav ml-auto">
+            <li><a role="button" class="btn btn-primary" href="" data-toggle="modal" data-target="#signup-modal" id="signup-2">Sign Up</a></li>
+            <li><a role="button" class="btn btn-outline" href="" data-toggle="modal" data-target="#login-modal" id="login">Sign In</a></li>
+            </ul>
+            </div>
+    </nav>
+    
+    
+    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="margin-right: 200px;" id="exampleModalLabel">Create a New Account
+                        <br>
+                        <small id="titleCaption" class="form-text text-muted">It's quick and easy.</small>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupform" class="form-vertical" onSubmit="register(); return false;">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="firstname" class="sr-only"></label>
+                                    <input id="firstname" class="form-control input-group-sm reg_name" type="text" name="firstname" title="Enter first name" placeholder="First name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="lastname" class="sr-only"></label>
+                                    <input id="lastname" class="form-control input-group-sm reg_name" type="text" name="lastname" title="Enter last name" placeholder="Last name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupemail" class="sr-only"></label>
+                            <input id="signupemail" class="form-control input-group-sm" type="email" name="email" title="Enter email" placeholder="Email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="signuppassword" class="sr-only"></label>
+                            <input id="signuppassword" class="form-control input-group-sm" type="password" name="password" title="Enter password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="affiliation" class="sr-only"></label>
+                            <input id="affiliation" class="form-control input-group-sm" type="text" name="affiliation" title="Enter affiliation" placeholder="Enter an affiliation, i.e. &quot;Penn&quot; or &quot;NETS&quot;">
+                        </div>
+                        <div class="form-group">
+                            <b>Birthday</b>
+                            <input id="birthdate" class="form-control input-group-sm" name="birthdate" placeholder="MM/DD/YYY" type="date">
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button type="submit" class="btn btn-primary" id="create">Sign Up</button>
+                            <small id="disclaimer" class="form-text text-muted">By clicking Sign Up, you agree to our Terms, Data Policy and Cookies Policy.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="signupsnackbar"></div>
+    </div>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                	<i class="fas fa-parking fa-2x"  id="pennbook" style="height: 35px; margin-right: 10px;"></i>
+                    <h5 class="modal-title" id="exampleModalLabel" style="margin-right: 100px;">Log In To Pennbook</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <div class="text" style="text-align: center;">
+                <span id="titleCaption" class="form-text text-muted">Welcome back.</span>
+                </div>
+                    <form id="loginform" class="form-vertical" onSubmit="login(); return false;">
+                        <div class="form-group">
+                        	<br>
+                            <label for="loginemail" class="sr-only"></label>
+                            <input id="loginemail" class="form-control input-group-sm" type="email" name="email" title="Enter email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginpassword" class="sr-only"></label>
+                            <input id="loginpassword" class="form-control input-group-sm" type="password" name="password" title="Enter password" placeholder="Password">
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button type="submit" class="btn btn-primary" id="loginbtn">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="loginsnackbar"></div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-right align-items-center" id="captionBox">
+            <div class="col-6">
+                <h1 class="caption-1" style="color: #fff">Meet friends through what you like</h1>
+                <p class="caption-2" style="color: #fff; ">Create your <b>Pennbook&trade;</b> profile today.</p>
+                <div id="get-started">
+                    <a role="button" class="btn btn-primary" href="" data-toggle="modal" data-target="#signup-modal" id="getstarted">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/home.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2026b88aeb.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-primary">
+
+      <a class="navbar-brand" href="/home">
+        <i class="fas fa-parking fa-lg"></i>
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Pennbook" aria-label="Search" style="border: 0px;" id="search">
+            <button class="btn btn-primary active" type="submit" style="line-height: .75em;" aria-pressed="true"><i class="fa fa-search"></i></button>
+          </form>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li><a class="nav-link active" href="" id="nav-bar-profile-link"><img class="pennbook-curruser-profileimg" src="" />
+              <span class="pennbook-user-name"></span></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link active" href="/home">Home</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link" href="#"><i class="fab fa-connectdevelop fa-lg" style="margin-right: 5px;"></i>Network Visualizer</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link" href="#"><i class="fas fa-user-friends fa-lg"></i></a></li>
+          <li><a class="nav-link" href="/chat"><i class="fab fa-facebook-messenger fa-lg"></i></a></li>
+          <li><a class="nav-link" href="#"><i class="fa fa-bell fa-lg"></i></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-lock fa-lg"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Log Out here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div class="card gedf-card">
+            <div class="card-body">
+              <div class="h5" style="margin-bottom: 15px;">
+                <a class="pennbook-curruser-profile" href="">
+                  <img class="pennbook-curruser-profileimg" src="">
+                  <span class="pennbook-user-name"></span></a>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <a class="news-feed" href="/home">
+                    <i class="fas fa-newspaper" id="newsfeedSidebar"></i>
+                    <span>News Feed</span></a>
+                </li>
+                <li class="list-group-item">
+                  <a class="chat" href="/chat">
+                    <i class="fab fa-facebook-messenger" id="chatsSidebar"></i>
+                    <span>Chats</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br>
+          <div class="card gedf-card">
+            <div class="card-body">
+              <div class="h5" style="margin-bottom: 15px;">You might know...</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-fill bd-highlight"><img class="pennbook-user-profileimg" src="https://www.seas.upenn.edu/directory/images/photos/a-full-haeberlen.jpg" />
+                      <span class="card-text">Andreas Haeberlen</span></div>
+                    <div class="p-2 flex-fill bd-highlight"><i class="fas fa-user-plus" id="adduser"></i></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-6" id="update-status-box">
+          <div class="card gedf-card">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="statustab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="status-tab" data-toggle="tab" href="#updatestatus" role="tab" aria-controls="status" aria-selected="true"><i class="fas fa-pen-square fa-lg" id="update-status-icon"></i><span>Update Status</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="photo-tab" data-toggle="tab" role="tab" aria-controls="photo" aria-selected="false" href="#addaphoto"><i class="fas fa-photo-video fa-lg" id="add-photo-icon"></i><span>Add A Photo</span></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="updatestatus" role="tabpanel" aria-labelledby="status-tab">
+                  <div class="form-group" name="status-update-form" id="">
+                    <label class="sr-only" for="message">status</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="addaphoto" role="tabpanel" aria-labelledby="photos-tab">
+                  <div class="form-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="customFile">
+                      <label class="custom-file-label" for="customFile">Upload Photo</label>
+                    </div>
+                  </div>
+                  <div class="py-4"></div>
+                </div>
+              </div>
+              <div class="btn-toolbar justify-content-between">
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary" onclick="updateStatus()">Post</button>
+                </div>
+                <div class="btn-group">
+                  <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-globe"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <template id="template">
+            <div class="card gedf-card">
+              <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2">
+                      <a class="pennbook-post-user-link" href="">
+                        <img class="pennbook-post-profile-img" width="45" src="" alt="">
+                      </a>
+                    </div>
+                    <div class="ml-2">
+                      <a class="pennbook-post-user-link" href="">
+                        <div class="pennbook-post-name"></div>
+                      </a>
+                      <i class="far fa-clock fa-sm"></i>
+                      <small class="pennbook-post-time"></small>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="pennbook-post-content">
+                </p>
+              </div>
+              <div class="card-footer">
+                <a href="#" class="pennbook-post-like"><i class="far fa-thumbs-up"></i>Like</a>
+                <a href="#" class="pennbook-post-comment"><i class="far fa-comment-alt"></i>Comment</a>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-3">
+          <div class="card gedf-card">
+            <div class="card-body">
+              <h5 class="card-title">Online Friends</h5>
+              <ul class="navbar-nav ml-auto">
+                <li><a class="nav-link disabled" href="#"><img class="pennbook-user-profileimg" src="https://www.biography.com/.image/t_share/MTY2NTIxNzUwNjAxODY4NTEx/benjamin-franklin_editedjpg.jpg" />
+                    <span class="card-text">Benjamin Franklin</span><i class="fas fa-circle fa-xs" id="status"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="successsnackbar"></div>
+    <div id="snackbar"></div>
+  </body>
+
+</html>

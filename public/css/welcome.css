@@ -1,0 +1,171 @@
+<style type="text/css">
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.bg-primary {
+	background-color: #0666D0!important;
+}
+
+body {
+	color: #606770;
+}
+
+.navbar-nav > li{
+  padding-left:8px;
+  padding-right:8px;
+}
+
+.pagebg {
+	background: url("https://i.postimg.cc/5NQRKSjf/upenn.jpg") no-repeat
+		center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position: fixed;
+	filter: blur(4px);
+	-webkit-filter: blur(4px);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform: scale(1.1);
+}
+
+#logo {
+    color: #0666D0;
+    margin-right: 10px;
+}
+
+#name {
+	margin-top: 14px;
+	margin-left: 10px;
+}
+
+a {
+	color: #0666D0;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	transform: perspective(1px) translateY(-50%);
+	margin-left: 60px;
+}
+
+
+.caption-1 {
+	font-size: 49px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.caption-2 {
+	font-size: 24px;
+	font-weight: normal;
+	color: #fff;
+}
+
+#signup, #signup-2, #create, #login, #loginbtn, #getstarted {
+	font-weight: 600;
+}
+
+.form-group, #firstname, #lastname, #signupemail, #signuppassword, #birthdate,
+	#affiliation, #loginemail, #loginpassword {
+	font-size: 14px;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-body {
+    max-height: calc(100vh);
+    overflow-y: auto;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0666D0;
+    border-color: #0666D0;
+}
+
+.btn-outline-primary {
+    color: #0666D0;
+    background-color: transparent;
+    background-image: none;
+    border-color: #0666D0;
+}
+
+#pennbook {
+	color: #0666D0;
+}
+
+#signupsnackbar, #loginsnackbar {
+  visibility: hidden;
+  width: 300px;
+  margin-left: -150px;
+  font-size: 14px;
+  background-color: #eb4034;
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+}
+
+#signupsnackbar.show, #loginsnackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+</style>

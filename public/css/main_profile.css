@@ -1,0 +1,381 @@
+<style type="text/css">
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.bg-primary {
+	background-color: #0666D0!important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0666D0;
+    border-color: #0666D0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.pennbook-comment-user-link:hover {
+  color: #0666D0;
+  font-size: .875rem;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.pennbook-comment-user-link {
+  font-size: .875rem;
+  font-weight: 900;
+    color: #0666D0;
+    text-decoration: none;
+}
+
+
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: #177EED!important;
+    border-color: #0666D0!important;
+}
+
+#message {
+    font-size: 14px;
+}
+
+.btn-group-vertical>.btn, .btn-group>.btn {
+	line-height: .5;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+	background-color: #177EED;
+	border-color: #0666D0;
+}
+
+body {
+	color: #606770;
+	background-color: #F2F6F9;
+}
+
+.navbar {
+  position: fixed; 
+  top: 0;
+  margin-bottom: 8px;
+  width: 100%; 
+  z-index: 9999999999;
+}
+
+.dropdown-menu {
+	z-index: 9999999999;
+	font-size: 12px;
+}
+
+ .gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+
+        @media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .gedf-card {
+                margin-bottom: 18px;
+            }
+        }
+
+.navbar-nav, #search {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+#img {
+	height: 120px;
+	width: 120px;
+	border-radius: 8px;
+}
+
+.form-text {
+    display: block;
+    margin-top: 0;
+}
+
+.container {
+	max-width: 100%;
+  margin-top: 64px;
+  padding-left: 8px;
+  padding-right: 8px;
+  z-index: -1;
+}
+
+.pennbook-curruser-profile:hover, .news-feed:hover, .chat:hover {
+	color: #606770;
+    text-decoration: none;
+    font-weight:bold
+}
+
+.h5, .list-group-item, .nav-tabs {
+	font-size: 14px;
+	color: #606770;
+}
+
+.nav-tabs .nav-link {
+	color: #606770;
+}
+
+.nav-tabs .nav-link.active, .pennbook-curruser-profile, .chat, .news-feed {
+	color: #606770;
+}
+
+#nav-bar-user-link {
+	
+}
+
+.nav-tabs, .btn-primary {
+	font-weight: 600;
+}
+
+.row {
+	max-width: 100%;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.col-5 {
+	padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.col-2, #sidebar {
+	position: sticky;
+    top: 4rem;
+    z-index: 1000;
+    height: calc(100vh - 4rem);
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-top: 10px;
+}
+
+.col-2 {
+	padding-left: 6px;
+}
+
+#sidebar {
+	padding-right: 6px;
+}
+
+
+#chatsSidebar, #newsfeedSidebar {
+	margin-right: 5px;
+	color: #0666D0;
+	font-weight: 600;
+}
+
+.list-group-item {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.pennbook-curruser-profileimg, .pennbook-user-profileimg {
+	border-radius: 4px;
+	height: 25px;
+	width: 25px;
+	margin-right: 5px;
+}
+
+#search-box {
+	width: 250px;
+	font-size: 12px;
+	font-weight: 600;
+	color: #606770;
+}
+
+#interest-box {
+	width: 411px;
+	font-size: 14px;
+	color: #606770;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+    background-color: #0666D0;
+    border-color: #0666D0;
+}
+
+.pennbook-post-profile-img {
+	border-radius: 4px;
+}
+
+#update-status-icon, #add-photo-icon {
+	margin-right: 5px;
+	color: #0666D0;
+}
+
+#adduser {
+	color: #3CB371;
+}
+
+.card-title {
+    margin-bottom: 8px;
+}
+
+
+#status {
+	text-align: right;
+	margin-left: 10px;
+	color: #3CB371;
+}
+
+#successsnackbar {
+  visibility: hidden;
+  width: 300px;
+  margin-left: -150px;
+  font-size: 14px;
+  background-color: #3CB371;
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+}
+
+#snackbar {
+  visibility: hidden;
+  width: 300px;
+  margin-left: -150px;
+  font-size: 14px;
+  background-color: #eb4034;
+  color: #fff;
+  text-align: center;
+  border-radius: 25px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+}
+
+#snackbar.show, #successsnackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.pennbook-post-profile-img {
+  border-radius: 4px;
+}
+
+.pennbook-post-time {
+  color: #606770;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pennbook-post-name, .pennbook-post-reciever-name {
+  color: #0666D0;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pennbook-post-creator-link:hover, .pennbook-post-user-image-link:hover, .pennbook-post-reciever-link:hover, .pennbook-post-user-link:hover {
+  color: #606770;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.pennbook-friend-user-link:hover {
+  color: #0666D0;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.pennbook-friend-user-link {
+  font-size: 14px;
+    color: #606770;
+    text-decoration: none;
+}
+
+#autocompleteTest {
+    z-Index: 999999999999;
+    position: absolute;
+    top: 40px;
+    left: 55.4px;
+    width: 249.8px;
+    background: #E0ECF9;
+    font-size: 12px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.pennbook-post-content {
+  color: #606770;
+  font-size: 14px;
+}
+
+.pennbook-post-like,
+.pennbook-post-like:hover,
+.pennbook-post-comment,
+.pennbook-post-comment:hover {
+  color: #0666D0;
+  text-decoration: none;
+  font-size: 13px;
+  margin-right: 20px;
+}
+
+.modified-card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+}
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: rgba(0,0,0,0); 
+    border-top: 0px; 
+}
+
+
+hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.fa-thumbs-up,
+.fa-comment-alt {
+  margin-right: 8px;
+}
+
+.fa-clock {
+  color: #606770;
+}
+
+
+</style>

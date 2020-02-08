@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/main_profile.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2026b88aeb.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/other_profile.js"></script>
+    <script type="text/javascript">
+      // User info
+      const user = <%- user %>;
+      const uuid = user.uuid;
+      const fullname = user.fullname;
+      const firstname = user.firstname;
+      const lastname = user.lastname;
+      const email = user.email;
+      const affiliation = user.affiliation;
+      const profileimageurl = user.profileimageurl;
+      const birthday = user.birthdate;
+      var interests = user.interests;
+      
+      // Curruser info
+      const currUser = <%- currUser %>;
+      const currUuid = currUser.uuid;
+      const currFullname = currUser.fullname;
+      const currFirstname = currUser.firstname;
+      const currLastname = currUser.lastname;
+
+      // Statuses
+      var feed = <%- feed %>;
+      
+      // Friends
+      var friends = <%- friends %>;
+      
+      // Check privacy
+      var mssg = '<%= mssg %>';
+    </script>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-expand-lg navbar-fixed-top navbar-dark bg-primary">
+
+      <a class="navbar-brand" href="/home">
+        <i class="fas fa-parking fa-lg"></i>
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <form class="form-inline" autocomplete="off" method="" action="" onSubmit="return false;">
+            <div class="form-group">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search Pennbook" aria-label="Search" style="border: 0px;" id="search-box">
+            </div>
+            <div id="autocompleteTest">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary active" type="submit" style="line-height: .75em;"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li><a class="nav-link active" href="" id="nav-bar-profile-link"><img class="pennbook-curruser-profileimg" src="" />
+              <span class="pennbook-user-name"></span></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link active" href="/home">Home</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li><a class="nav-link" href="/friendvisualizer"><i class="fab fa-connectdevelop fa-lg" style="margin-right: 5px;"></i>Network Visualizer</a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+                    <li class="nav-item dropdown">
+          	<a class="nav-link dropdown-toggle mr-lg-2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="requestsVal">
+          		<i class="fas fa-user-friends fa-lg"></i>
+          	</a>
+          	<div class="dropdown-menu dropdown-menu-right" style="min-width: 300px;" aria-labelledby="friendRequestsDropdown" id="friendrequests">
+          		<h5 class="dropdown-header">Friend Requests</h5>
+          		<div class="dropdown-divider"></div>
+          		
+          </li>
+          <li><a class="nav-link" href="/chat"><i class="fab fa-facebook-messenger fa-lg"></i></a></li>
+          <li>
+            <div class="nav-link disabled">|</div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-lock fa-lg"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/logout">Log Out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="card gedf-card">
+            <div style="text-align: center; padding-top: 15px;"><img src=alt="Card image cap" id="img"></div>
+            <div style="text-align: center; font-size: 12px; padding: 8px;">
+            </div>
+            <hr>
+            <div class="card-body" style="padding-top: 8px; padding-bottom: 8px">
+              <div style="text-align: center; font-weight: 600;">
+                <span id="pennbook-profile-name"></span>
+              </div>
+            </div>
+            <hr>
+            <div style="font-size: 11px; padding: 8px;">
+              <span id="email" class="form-text text-muted" style="font-weight: 600;"><i class="fas fa-envelope" style="margin-right: 5px; color: #0666D0;"></i>Email</span>
+              <span id="profile-email"></span>
+            </div>
+            <div style="font-size: 11px; padding: 8px;">
+              <span id="birthday" class="form-text text-muted" style="font-weight: 600;"><i class="fas fa-birthday-cake" style="margin-right: 5px; color: #0666D0;"></i>Birthday</span>
+              <span id="profile-birthday"></span>
+            </div>
+            <div style="font-size: 11px; padding: 8px;">
+              <span id="affiliation" class="form-text text-muted" style="font-weight: 600;"><i class="fas fa-id-badge" style="margin-right: 5px; color: #0666D0;"></i>Affiliation</span>
+              <span id="profile-affiliation"></span>
+            </div>
+            <div style="font-size: 11px; padding: 8px;">
+              <span id="interests" class="form-text text-muted" style="font-weight: 600;"><i class="fas fa-lightbulb" style="margin-right: 5px; color: #0666D0;"></i>Interests</span>
+              <span id="profile-interests"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-5" id="update-status-box">
+          <div class="card gedf-card" id="main">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="statustab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="status-tab" data-toggle="tab" href="#updatestatus" role="tab" aria-controls="status" aria-selected="true"><i class="fas fa-pen-square fa-lg" id="update-status-icon"></i><span>Update Status</span></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="updatestatus" role="tabpanel" aria-labelledby="status-tab">
+                  <div class="form-group" name="status-update-form" id="">
+                    <label class="sr-only" for="message">status</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-toolbar justify-content-between">
+                <div class="btn-group">
+                  <button type="submit" class="btn btn-primary" onclick="checkPrivacy(); return false;" id="postfailed">Post</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <template id="template">
+            <div class="card gedf-card">
+              <div class="modified-card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2">
+                      <a class="pennbook-post-user-image-link" href="">
+                        <img class="pennbook-post-profile-img" width="45" src="" alt="">
+                      </a>
+                    </div>
+                    <div class="ml-2">
+                        <div><a class="pennbook-post-creator-link" href=""><span class="pennbook-post-name"></a></span><i class="fas fa-caret-right" style="margin-right: 5px; margin-left: 10px;" id="caret"></i>
+                        <a class="pennbook-post-reciever-link" href="" id="reciever"><span class="pennbook-post-reciever-name"></span></a></div>
+                      <i class="far fa-clock fa-sm"></i>
+                      <small class="pennbook-post-time"></small>
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="pennbook-post-content"></span>
+              </div>
+              <hr width="100%" align="center">
+              <div class="divider">
+                
+              </div>
+              <hr width="100%" align="center">
+              <div class="card-footer" style="background: #EBECED;">
+              	<div style="font-size: 13px;" id="request-available">
+                <form class="form-inline" autocomplete="off" method="" action="" onSubmit="" id="sendcomment">
+                  <div class="form-group">
+                  	<input class="form-control mr-sm-2" type="text" placeholder="Enter a comment" aria-label="Search" style="border: 0px; font-size: 14px; width: 352px;" id="comment-box">
+                    <button class="btn btn-primary" type="submit" style="line-height: .75em; margin-left: 10px; font-size: 13px;" aria-pressed="true" id="comment">Comment</button>
+                  </div>
+                </form>
+              </div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-5" id="sidebar">
+          <div class="card gedf-card" id="onlinefriends">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-question-circle" style="color: #0666D0!important; margin-right: 5px;"></i>Your Friendship Status</h5>
+              <hr style="margin-bottom: 8px;">
+              <div style="font-size: 14px; font-weight: 600; background-color: #FCE7E6; color: #eb4034; border-radius: 4px;" id="friendship-status-bar">
+                  <div id="friendship-status" style="text-align: center; padding: 8px;">
+                    <span id="currStatus"></i>Not Friends</>
+                  </div>
+              </div>
+              <div style="font-size: 13px; padding-top: 8px;" id="request-available">
+                <form class="form-inline" autocomplete="off" method="" action="" id="sendrequest">
+                  <div class="form-group">
+                    <span id="send-request">Send A Friend Request</span>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary" type="submit" style="line-height: .75em; margin-left: 10px;" onclick="sendRequest(); return false;" aria-pressed="true" id="request">Send</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card gedf-card" id="friendslist" style="max-height: 270px; overflow: auto;">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-user-friends" style="color: #0666D0!important; margin-right: 5px;"></i>Friends</h5>
+              <hr>
+              <div style="font-size: 13px; padding-top: 8px;" id="friend-list">
+                
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div id="successsnackbar"></div>
+    <div id="snackbar"></div>
+  </body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>
+
+
+    </script>
+
+
+    <title></title>
+
+
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"/>
+
+
+
+    <style>
+
+
+        body, html {height: 5000px; margin: 0; padding: 0; width: 100%;}
+        body {position: relative; overflow-x: hidden;}
+        #bodycontainer {width: 100%; height: 100%; position: absolute; top: 0; bottom: 0; right: 0; left: 0;}
+        #navdiv {background-color: rgb(66,102,178); height: 40px; width: 100%; position: fixed;}
+        #logodiv {position: absolute; left: 7%; height: 100%; width: 30px;}
+        #facebookLogo {font-size: 29px; position: absolute; color: white; height: 100%; bottom: 1px;}
+        #searchdiv {position: absolute; left: 10%; top: 0; bottom: 0; margin: auto; width: 40%; border-radius: 2px;}
+        #searchField {position: absolute; left: 0; right: 0; top: 20%; bottom: 20%; margin: auto; width: 100%;}
+        #navmenudiv {position: absolute; left: 65%; width: 300px; top: 0; bottom: 0;
+            display: flex; flex-direction: row; justify-content: space-between; align-items: center;}
+        .navmenuitem {height: 70%; color: white; font-size: 14px; font-weight: bold; border-right: 1px solid rgba(0, 0, 0, .1);
+            padding-right: 5px; padding-top: 5px;}
+        .navmenuicon {color: #24271a; font-size: 20px; border-right: 1px solid rgba(0, 0, 0, .1); padding-right: 10px;}
+        .navmenuicon:hover {color: #35372a;}
+        .navmenuitem:hover {background-color: #35372a; text-decoration: none;}
+
+        #maindiv {position: fixed; top: 50px; width: 100%; height: 100%; background-color: red; display: flex;
+            flex-direction: row; flex-wrap: nowrap;}
+
+        #maindivcenter {background-color: rgb(234,235,238); height: 100%; width: 55%;
+            display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; overflow: auto;
+            position: absolute; left: 20%;}
+
+
+
+        #maindivleft {background-color: rgb(234,235,238); height: 100%; width: 20%; position: fixed; left: 0;
+            display: flex; flex-direction: column; flex-wrap: nowrap}
+
+        #maindivright {background-color: rgb(234,235,238); height: 100%; width: 25%; position: fixed; left: 75%;}
+
+
+
+        .leftButton {background-color: rgb(234,235,238); width: 60%; margin-top: 10px; margin-left: 35%; border: none;
+            color: black; margin-bottom: 20px;}
+        .leftButtonNotFirst {background-color: rgb(234,235,238); width: 60%; margin-top: 5px; margin-left: 35%; border: none;
+            color: black; font-weight: 800;}
+        .leftButtonNotFirst:hover {background-color: rgb(245,246,247)}
+        .leftButton:hover {background-color: rgb(245,246,247)}
+
+
+    </style>
+
+</head>
+<body>
+<div id="bodycontainer">
+
+    <div id="navdiv" class="is-fixed-top">
+
+        <div id="logodiv">
+            <span id="facebookLogo"><i class="fab fa-facebook-square"></i></span>
+        </div><!--logodiv-->
+
+        <div id="searchdiv">
+            <input id="searchField" type="text" placeholder="Search..">
+        </div><!--searchdiv-->
+
+        <div id="navmenudiv">
+
+            <a class="navmenuitem" href="/home">Home</a>
+            <a class="navmenuitem" href="default.asp">Ismael</a>
+            <a class="navmenuicon" href="default.asp"><i class="fas fa-user-friends"></i></a>
+            <a class="navmenuicon" href="/chat"><i class="fab fa-facebook-messenger"></i></a>
+            <a class="navmenuicon" href="default.asp"><i class="fas fa-bell"></i></a>
+
+
+
+
+
+        </div><!--navmenudiv-->
+
+    </div><!--navdiv-->
+
+
+
+    <div id="maindiv">
+
+        <div id="maindivleft">
+
+
+            <button type="button" class="leftButton">Umang Somani</button>
+            <button type="button" class="leftButtonNotFirst">button</button>
+            <button type="button" class="leftButtonNotFirst">button</button>
+            <button type="button" class="leftButtonNotFirst">button</button>
+            <button type="button" class="leftButtonNotFirst">button</button>
+            <button type="button" class="leftButtonNotFirst">button</button>
+
+
+
+
+
+        </div><!--maindivleft-->
+
+
+        <div id="maindivcenter">
+
+
+        </div><!--maindivcenter-->
+
+
+        <div id="maindivright">
+
+
+        </div><!--maindivright-->
+
+
+    </div>
+
+
+
+
+
+
+</div><!--maindiv-->
+
+</div><!--bodycontainer-->
+
+
+
+</body>
+</html>
