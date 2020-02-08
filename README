@@ -1,0 +1,155 @@
+Pennbook is a lightweight Facebook clone made by Timi Soetan, Umang Somani and Ismael Abdullah.
+
+Seas Login Names: -
+- usomani
+- tsoetan
+- ismael99
+
+We have completed the full assignment with Extra Credits
+
+The features that have been implemented are the following:
+
+[X] A welcome screen with login / signup available.
+
+[X] Passwords are hashed when a user is creating a new account.
+
+[X] User's have a home page where they can see status updates involving
+	themselves and friends and friends who are currently online.
+	
+[X] Home page content is dynamic and it's contents refresh when new data
+	has been introduced.
+	
+[X] User's have a unique Pennbook Id, and their profile page lists their
+	user profile information such as their name, email address, interests
+	affiliation, birthday and a list of friends.
+	
+[X] User's can update their status on their profile, home page or the wall
+	of a friend.
+	
+[X] User can see a list of friend recommendations based on the data analysis
+	by running the Adsorption algorithm in MapReduce.
+	
+[X] User's can visualize their network of friends and friends' friends, with
+	links only to existing friends and other user's with the same affiliation
+	as the currently logged in user.
+
+[X] User's can search for other user's in Pennbook, with a field of relevant
+	suggestion populated underneath while typing.
+	
+[X] User's can chat with each other, and a user will recieve a notification when
+	one user wants to chat with them. These chats are also persistent.
+	
+[X] User's can chat in groups with each other, with the group chat continuing to
+	work as long as one user remains in the chat.
+	
+[X] Mesages in chat are ordered consistently.
+
+[X] We use Hadoop MapReduce to recommend friends based on mutual friends, interests, and affiliations using the adsorption algorithm.
+There are 8 Mapreduce jobs that perform the friend recommendations. We use a javascript file called recommender_input.js to go through the databases and produce an input files consisting of userids, their affiliation, interests and friends.
+We then perform 3 mapreduce jobs to convert it into out intermediate format. Then we perform the inter stage and normalization stage repeatedly, using 2 map reduce jobs to check the difference between 2 alternate files and then finish to print out the results in an output file. This consists of the uid's of each user and uid's of users. that are recommended.
+
+[X] We implemented our design with both scalability and security in mind.
+
+[X] We have run it on EC2 and also done MapReduce in EMR
+
+
+
+Extra Credit features implemented are the following:
+
+[X] LinkedIn style friend requests where the user can accept or deny a 
+	pending request from another user.
+	
+[X] Features for post privacy: users can't post a status update on wall's
+	of user's who are not their friends. Moreover, they can't comment on
+	such user's status updates as well.
+
+[X] Posts features practical information such as a relative date timestamp, 
+	denotion of when a status update was made on a wall other than the
+	user's and links to profiles of those who are directly related to the post
+	and those who have commented.
+
+[X] Notification when two users become friends. Friends can also comment on it
+
+[X] GMAIL style emails so that no user can try creating similar emails (timi.soetan@ and timisoetan). We are able to parse out gmail aliases to prevent spammers and a user having unwarranted access to another user’s account.
+
+[X] Password encrypted and then sent to the the server so that it's more secure
+
+[X] Some exceptional effort was made in designing the UI of Home page and User Profile	
+
+	
+Source Files for Pennbook include:
+
+Models
+dynamo.js
+user.js
+status.js
+friends.js
+friend-request.js
+comment.js
+notification.js
+room.js
+chat.js
+
+Assets
+defaultprofileimg.png
+base.css
+home.css
+main_profile.css
+welcome.css
+
+Routes
+user_routes.js
+friend_routes.js
+status_routes.js
+home_routes.js
+comment_routes.js
+
+Scripts
+authentication.js
+friendvisualizer.js
+home.js
+jit.js
+main_profile.js
+other_profile.js
+recommender_input.js
+
+Views
+chat.ejs
+friendvisualizer.ejs
+home.ejs
+main_profile.ejs
+other_profile.ejs
+welcome.ejs
+index.ejs
+
+Controller
+app.js
+config.json
+package.json
+package-lock.json
+
+Text
+output.txt (Friend recommendations)
+Pennbook-Recommendations-1576564030750.txt
+
+
+We declare that all code being submitted by our team was written by us.
+
+To run this program, first run the "npm install" to load all dependencies needed. Then run 
+app.js and the program should be avaialable on port 80.
+
+MAP REDUCE:
+Command used to run from terminal:
+hadoop jar Recommender.jar edu.upenn.nets212.hw3.RecommenderDriver composite <name of input file> init1 init2 interm1 interm2 temp1 temp2 diff <name of output file> <number of reducers>
+
+Libraries to install: -
+npm install express --save
+npm install express-session
+npm install dynamoose
+npm install shortid
+npm install bcrypt
+npm install async
+npm install express@">=3.0.0 <4.0.0" --save (If middle-ware error arises)
+npm install socket.io
+npm install ejs
+
